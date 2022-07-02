@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
+import MobilePreview from "../components/preview/MobilePreview";
 
 const Home: NextPage = () => (
     <div>
@@ -31,7 +32,6 @@ const Home: NextPage = () => (
             <Box
                 id="preview"
                 sx={{
-                    bgcolor: "#ed2",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -39,7 +39,7 @@ const Home: NextPage = () => (
                     justifyContent: "center",
                 }}
             >
-                <Typography>Preview</Typography>
+                <MobilePreview />
             </Box>
         </div>
     </div>
