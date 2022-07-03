@@ -1,14 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import MobilePreview from "../components/preview/MobilePreview";
+import { ColorInput } from "../components/ColorInput";
 
 const Home: NextPage = () => (
     <div>
         <Head>
             <title>UI Colors</title>
         </Head>
-        {/* <AppBar elevation={0}>UI Colors</AppBar> */}
         <div
             style={{
                 display: "flex",
@@ -19,7 +19,6 @@ const Home: NextPage = () => (
             <Box
                 id="color-input"
                 sx={{
-                    bgcolor: "#ed2939",
                     width: "100%",
                     height: "100%",
                     display: "flex",
@@ -27,7 +26,7 @@ const Home: NextPage = () => (
                     justifyContent: "center",
                 }}
             >
-                <Typography>Input</Typography>
+                <ColorInput />
             </Box>
             <Box
                 id="preview"
