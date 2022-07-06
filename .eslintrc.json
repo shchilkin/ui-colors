@@ -4,6 +4,9 @@
     "next/core-web-vitals",
     "prettier"
   ],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -20,6 +23,7 @@
       }
     ],
     "import/extensions": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "prettier/prettier": "warn"
   }
 }
