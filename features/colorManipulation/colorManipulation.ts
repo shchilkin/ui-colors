@@ -3,11 +3,12 @@ import { HEX } from "../../types";
 import { getComplimentaryColor } from "../../utils/getComplimentaryColor";
 import { getColorTint } from "../../utils/getColorTint";
 import { getColorShade } from "../../utils/getColorShade";
+import { toHex } from "../../utils/toHEX/toHex";
 
 // TODO: Add color manipulation logic (color palette generation)
 const colorManipulationSlice = createSlice({
     name: "colorManipulation",
-    // TODO Initialize initial state instead of hardcoding values
+    // TODO Initialize initial state instead of hard coding values
     initialState: {
         mainColor: "#ed2939",
         accent: "#29EDDD",
@@ -22,28 +23,31 @@ const colorManipulationSlice = createSlice({
     },
     reducers: {
         // TODO: PayloadAction: add rgb and hls - add  Generics <T>
-        // TODO: Fix typing
         changeColor: (state, action: PayloadAction<HEX>) => {
             const accentColor = getComplimentaryColor(action.payload);
             // eslint-disable-next-line no-param-reassign
             state.mainColor = action.payload.value;
             // eslint-disable-next-line no-param-reassign
-            state.accent = accentColor.value;
-            state.accentBackgroundDark = getColorShade(accentColor, 40).value;
-            state.accentBackgroundLight = getColorTint(accentColor, 70).value;
+            state.accent = toHex(accentColor).value;
+            // eslint-disable-next-line no-param-reassign
+            state.accentBackgroundDark = toHex(getColorShade(accentColor, 40)).value;
+            // eslint-disable-next-line no-param-reassign
+            state.accentBackgroundLight = toHex(getColorTint(accentColor, 70)).value;
             // TODO: Create function getTint or getShade
             // TODO: Change other colors according to main color
             // colorProcessor({ type: "hex", value: action.payload.value }, {});
-            state.backgroundDark = getColorShade(action.payload, 90).value;
+            // eslint-disable-next-line no-param-reassign
+            state.backgroundDark = toHex(getColorShade(action.payload, 90)).value;
             // state.textDark =
             // eslint-disable-next-line no-param-reassign
             // TODO Convert to Hex
-            state.backgroundLight = getColorTint(action.payload, 90).value;
-            // state.textLight =
-            state.cardDark = getColorShade(action.payload, 40).value;
             // eslint-disable-next-line no-param-reassign
-            // TODO Convert to Hex
-            state.cardLight = getColorTint(action.payload, 40).value;
+            state.backgroundLight = toHex(getColorTint(action.payload, 90)).value;
+            // state.textLight =
+            // eslint-disable-next-line no-param-reassign
+            state.cardDark = toHex(getColorShade(action.payload, 40)).value;
+            // eslint-disable-next-line no-param-reassign
+            state.cardLight = toHex(getColorTint(action.payload, 40)).value;
         },
     },
 });
