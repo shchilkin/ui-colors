@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HEX } from "../../types";
-import { getComplimentaryColor } from "../../utils/getComplimentaryColor";
-import { getColorTint } from "../../utils/getColorTint";
-import { getColorShade } from "../../utils/getColorShade";
-import { toHex } from "../../utils/toHEX/toHex";
+import { getComplimentaryColor, getColorTint, getColorShade, toHex } from "../../utils";
 
 // TODO: Add color manipulation logic (color palette generation)
 const colorManipulationSlice = createSlice({
