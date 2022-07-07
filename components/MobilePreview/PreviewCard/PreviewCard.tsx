@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../pages/_app";
 
@@ -8,26 +8,35 @@ export const PreviewCard: React.FunctionComponent = () => {
         (state) => state.colorManipulation.cardLight
     );
     const accent = useSelector<RootState, string>((state) => state.colorManipulation.accent);
+    const accentTint = useSelector<RootState, string>(
+        (state) => state.colorManipulation.accentBackgroundLight
+    );
     return (
         <div
             style={{
                 display: "flex",
                 flexDirection: "column",
                 backgroundColor: cardBackground,
-                borderRadius: 12,
+                borderRadius: 16,
                 padding: 16,
                 paddingTop: 16,
                 gap: 4,
                 marginTop: 8,
             }}
         >
-            <Typography variant="h6">Card title</Typography>
-            <Typography variant="subtitle1">Card subtitle</Typography>
-            <Typography variant="body1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
+            <Typography variant="h6" style={{ paddingLeft: 4 }}>
+                Can Collector
             </Typography>
-            <Chip label="Chip Content" sx={{ bgcolor: accent }} />
+            <Typography variant="body1" style={{ paddingLeft: 4 }}>
+                As a can collector you need to ensure that work areas are kept clean, neat and
+                well-organized.
+            </Typography>
+            <Box>
+                <Chip
+                    label="Public"
+                    sx={{ color: accent, backgroundColor: accentTint, maxWidth: 64, height: 24 }}
+                />
+            </Box>
         </div>
     );
 };
