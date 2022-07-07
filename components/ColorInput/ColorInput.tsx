@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeColor } from "../../features/colorManipulation";
 import { RootState } from "../../pages/_app";
 import { isValidHexColor } from "../../utils/isValidHexColor";
+import { RandomColorButton } from "../RandomColorButton/RandomColorButton";
 
 // TODO: Different color modes - RGB, HSL, HSB, Hex, HTML Color Names
 export const ColorInput: React.FunctionComponent = () => {
@@ -19,9 +20,10 @@ export const ColorInput: React.FunctionComponent = () => {
         setColorValue(event.target.value);
     };
     return (
-        <Box>
-            <Typography>Enter color code:</Typography>
-            <Typography>Main color from global store: {mainColor}</Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            <Box>
+                <Typography>Enter color code:</Typography>
+            </Box>
             <Paper
                 variant="outlined"
                 component="div"
@@ -29,6 +31,7 @@ export const ColorInput: React.FunctionComponent = () => {
             >
                 <InputBase placeholder="#f0f0f0" value={colorValue} onInput={handleChange} />
             </Paper>
+            <RandomColorButton />
         </Box>
     );
 };
