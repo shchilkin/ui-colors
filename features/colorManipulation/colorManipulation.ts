@@ -11,6 +11,8 @@ const colorManipulationSlice = createSlice({
     initialState: {
         mainColor: "#ed2939",
         accent: "#29EDDD",
+        accentBackgroundLight: "#bffaf5",
+        accentBackgroundDark: "#15776f",
         backgroundDark: "#180406",
         textDark: "#fdeaeb",
         backgroundLight: "#fdeaeb",
@@ -22,10 +24,13 @@ const colorManipulationSlice = createSlice({
         // TODO: PayloadAction: add rgb and hls - add  Generics <T>
         // TODO: Fix typing
         changeColor: (state, action: PayloadAction<HEX>) => {
+            const accentColor = getComplimentaryColor(action.payload);
             // eslint-disable-next-line no-param-reassign
             state.mainColor = action.payload.value;
             // eslint-disable-next-line no-param-reassign
-            state.accent = getComplimentaryColor(action.payload).value;
+            state.accent = accentColor.value;
+            state.accentBackgroundDark = getColorShade(accentColor, 40).value;
+            state.accentBackgroundLight = getColorTint(accentColor, 70).value;
             // TODO: Create function getTint or getShade
             // TODO: Change other colors according to main color
             // colorProcessor({ type: "hex", value: action.payload.value }, {});

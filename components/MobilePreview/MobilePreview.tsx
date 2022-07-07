@@ -28,10 +28,12 @@ export const MobilePreview: React.FunctionComponent = () => {
                 <Typography style={{ color: mainColor }} variant="h5">
                     Colored Title
                 </Typography>
-                <Typography style={{ color: lightText }} variant="h5">
+                <Typography style={{ color: lightText, paddingBottom: 4 }} variant="h5">
                     Uncolored Title
                 </Typography>
-                <Typography variant="subtitle1">subtitle</Typography>
+                <Typography style={{ paddingBottom: 8 }} variant="subtitle1">
+                    18 gigs available
+                </Typography>
                 <PreviewCard />
                 <PreviewCard />
                 <PreviewCard />
