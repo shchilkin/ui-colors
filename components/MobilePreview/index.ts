@@ -1,1 +1,1 @@
-export * from './MobilePreview';
+export * from "./MobilePreview";

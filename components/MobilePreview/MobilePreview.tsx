@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 import { PreviewCard } from "./PreviewCard";
 import { RootState } from "../../pages/_app";
 
-// TODO: Add more typography styles (Bold, light)
-
 export const MobilePreview: React.FunctionComponent = () => {
     const mainColor = useSelector<RootState, string>((state) => state.colorManipulation.mainColor);
     const lightText = useSelector<RootState, string>((state) => state.colorManipulation.textLight);
