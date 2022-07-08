@@ -22,28 +22,15 @@ const colorManipulationSlice = createSlice({
         // TODO: PayloadAction: add rgb and hls - add  Generics <T>
         changeColor: (state, action: PayloadAction<HEX>) => {
             const accentColor = getComplimentaryColor(action.payload);
-            // eslint-disable-next-line no-param-reassign
             state.mainColor = action.payload.value;
-            // eslint-disable-next-line no-param-reassign
             state.accent = toHex(accentColor).value;
-            // eslint-disable-next-line no-param-reassign
             state.accentBackgroundDark = toHex(getColorShade(accentColor, 40)).value;
-            // eslint-disable-next-line no-param-reassign
             state.accentBackgroundLight = toHex(getColorTint(accentColor, 70)).value;
-            // TODO: Create function getTint or getShade
-            // TODO: Change other colors according to main color
-            // colorProcessor({ type: "hex", value: action.payload.value }, {});
-            // eslint-disable-next-line no-param-reassign
             state.backgroundDark = toHex(getColorShade(action.payload, 90)).value;
-            // state.textDark =
-            // eslint-disable-next-line no-param-reassign
-            // TODO Convert to Hex
-            // eslint-disable-next-line no-param-reassign
+            state.textDark = toHex(getColorTint(action.payload, 90)).value;
             state.backgroundLight = toHex(getColorTint(action.payload, 90)).value;
-            // state.textLight =
-            // eslint-disable-next-line no-param-reassign
+            state.textLight = toHex(getColorShade(action.payload, 90)).value;
             state.cardDark = toHex(getColorShade(action.payload, 40)).value;
-            // eslint-disable-next-line no-param-reassign
             state.cardLight = toHex(getColorTint(action.payload, 40)).value;
         },
     },
