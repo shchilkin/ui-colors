@@ -15,7 +15,11 @@ export const RandomColorButton: React.FunctionComponent = () => {
             blue: getRandomNumber(),
         },
     };
-    const handleClick = () => dispatch(changeColor(toHex(randomRGB)));
+    const handleClick = () => {
+        // TODO: Use same function as Color input
+        dispatch(changeColor(toHex(randomRGB)));
+        window.history.replaceState("", "", `${toHex(randomRGB).value}`);
+    };
     return (
         <Button variant="text" onClick={handleClick}>
             generate random color
