@@ -2,6 +2,7 @@
     "name": "ui-colors",
     "version": "0.1.0",
     "private": true,
+    "license": "MIT",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -9,6 +10,15 @@
         "lint": "next lint",
         "test": "jest",
         "prepare": "husky install"
+    },
+    "lint-staged": {
+        "**/*.+(ts|tsx)": [
+            "eslint --fix"
+        ],
+        "**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --write"
+        ],
+        "*.js": "eslint --cache --fix"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
@@ -21,15 +31,6 @@
         "react-dom": "18.2.0",
         "react-redux": "^8.0.2",
         "redux": "^4.2.0"
-    },
-    "lint-staged": {
-        "**/*.+(ts|tsx)": [
-            "eslint --fix"
-        ],
-        "**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-            "prettier --write"
-        ],
-        "*.js": "eslint --cache --fix"
     },
     "devDependencies": {
         "@types/jest": "^28.1.4",
