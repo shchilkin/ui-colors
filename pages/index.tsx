@@ -1,8 +1,7 @@
 import { Box, ThemeProvider } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { MobilePreview } from "../components/MobilePreview";
-import { ColorInput } from "../components/ColorInput";
+import { MobilePreview, ColorInput } from "../components";
 import { theme } from "../theme";
 
 const Home: NextPage = () => (
