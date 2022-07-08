@@ -3,9 +3,10 @@ import "../styles/styles.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import colorManipulationReducer from "../features/colorManipulation/colorManipulation";
+import systemSettingsReducer from "../features/systemSettings/systemSettings";
 
 const store = configureStore({
-    reducer: { colorManipulation: colorManipulationReducer },
+    reducer: { colorManipulation: colorManipulationReducer, systemSettings: systemSettingsReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
