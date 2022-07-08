@@ -4,6 +4,12 @@
     "next/core-web-vitals",
     "prettier"
   ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
   "plugins": [
     "prettier"
   ],
@@ -24,6 +30,7 @@
     ],
     "import/extensions": 0,
     "import/prefer-default-export": 0,
-    "prettier/prettier": "warn"
+    "prettier/prettier": "warn",
+    "no-param-reassign": ["error", { "props": false }]
   }
 }

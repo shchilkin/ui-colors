@@ -1,9 +1,9 @@
 import { Box, ThemeProvider } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { MobilePreview } from "../components/MobilePreview";
-import { ColorInput } from "../components/ColorInput";
+import { MobilePreview, ColorInput } from "../components";
 import { theme } from "../theme";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
 
 const Home: NextPage = () => (
     <ThemeProvider theme={theme}>
@@ -43,11 +43,14 @@ const Home: NextPage = () => (
                         width: "100%",
                         height: "100%",
                         display: "flex",
+                        flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
+                        gap: 2,
                     }}
                 >
                     <MobilePreview />
+                    <DarkModeSwitch />
                 </Box>
             </div>
         </div>
