@@ -1,5 +1,5 @@
 import { RGB, HEX } from "../../types";
-import { hexToRGB } from "../toRGB/hexToRGB";
+import { toRGB } from "../toRGB/toRGB";
 
 export function colorValueTint(rgbValue: number, percent = 0): number {
     const tint = rgbValue + (255 - rgbValue) * (percent / 100);
@@ -9,7 +9,7 @@ export function colorValueTint(rgbValue: number, percent = 0): number {
 // TODO: any color could be passed instead of only RGB
 export const getColorTint = (color: HEX | RGB, percent = 0): HEX | RGB => {
     if (color.type === "hex") {
-        const { red, green, blue } = hexToRGB(color).value;
+        const { red, green, blue } = toRGB(color).value;
         return {
             type: "hex",
             // TODO: Add rgb to hex convertor
