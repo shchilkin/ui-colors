@@ -6,7 +6,7 @@ export const toHex = (color: ColorType): HEX => {
         return {
             type: "hex",
             value: `#${
-                // TODO: Test solution
+                // TODO: use more precise convertion
                 // eslint-disable-next-line no-bitwise
                 ((1 << 24) + (color.value.red << 16) + (color.value.green << 8) + color.value.blue)
                     .toString(16)
