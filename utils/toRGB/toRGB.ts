@@ -1,6 +1,6 @@
 import { HEX, RGB } from "../../types";
 
-export const hexToRGB = (color: HEX): RGB => {
+export const toRGB = (color: HEX): RGB => {
     const hexWithoutHash = color.value[0] === "#" ? color.value.slice(1) : color.value; // remove #
     if (hexWithoutHash.length === 3) {
         const parsedValues = Array.from(hexWithoutHash).map((item) => parseInt(item + item, 16));

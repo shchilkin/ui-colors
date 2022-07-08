@@ -1,1 +1,1 @@
-export * from "./hexToRGB";
+export * from "./toRGB";
