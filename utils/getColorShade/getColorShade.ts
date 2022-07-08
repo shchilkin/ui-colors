@@ -1,5 +1,5 @@
 import { HEX, RGB } from "../../types";
-import { hexToRGB } from "../toRGB";
+import { toRGB } from "../toRGB";
 import { toHex } from "../toHEX";
 
 export const colorValueShade = (color: number, percent: number = 100): number =>
@@ -7,7 +7,7 @@ export const colorValueShade = (color: number, percent: number = 100): number =>
 
 export const getColorShade = (color: HEX | RGB, percent = 0): HEX | RGB => {
     if (color.type === "hex") {
-        const { red, green, blue } = hexToRGB(color).value;
+        const { red, green, blue } = toRGB(color).value;
         return toHex({
             type: "rgb",
             value: {

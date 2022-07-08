@@ -1,29 +1,30 @@
-import { ColorType } from "../../types";
-import { hexToRGB } from "../toRGB/hexToRGB";
-import { isValidHexColor } from "../isValidHexColor";
+import { ColorType, RGB } from "../../types";
+import { toRGB } from "../toRGB";
+import { toHex } from "../toHEX";
 
-// TODO: Add meaningful name - functions gets complimentary color code value
-const hexDigitVal = (hexDigit: number): string => {
-    const processing = 255 - hexDigit;
-    return processing.toString(16).length === 2
-        ? processing.toString(16)
-        : `${processing.toString(16) + processing.toString(16)}`;
-};
-
-export function getComplimentaryColor(color: ColorType): ColorType {
-    // hex case
+export function getComplimentaryColor<T extends ColorType>(color: T): T {
     if (color.type === "hex") {
-        const rgbColor = hexToRGB(color);
-        const processedValues = `#${hexDigitVal(rgbColor.value.red)}${hexDigitVal(
-            rgbColor.value.green
-        )}${hexDigitVal(rgbColor.value.blue)}`;
-
-        if (isValidHexColor(processedValues))
-            return {
-                type: color.type,
-                value: processedValues,
-            };
+        const rgbColor = toRGB(color);
+        const complimentaryRGB: RGB = {
+            type: "rgb",
+            value: {
+                red: 255 - rgbColor.value.red,
+                green: 255 - rgbColor.value.green,
+                blue: 255 - rgbColor.value.blue,
+            },
+        };
+        return toHex(complimentaryRGB) as T;
     }
-    /* Ideally this code is unreachable - serves for debugging purposes in case of calculation error */
-    throw new Error(`Bad input: ${color}`);
+    if (color.type === "rgb") {
+        const rgbColor: RGB = {
+            type: "rgb",
+            value: {
+                red: 255 - color.value.red,
+                green: 255 - color.value.green,
+                blue: 255 - color.value.blue,
+            },
+        };
+        return rgbColor as T;
+    }
+    throw new Error(`Bad color input: ${color}`);
 }
