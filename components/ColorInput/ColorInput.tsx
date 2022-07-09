@@ -14,13 +14,13 @@ export const ColorInput: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     React.useEffect(() => {
         setColorValue(mainColor);
-        window.history.replaceState("", "", `/${mainColor}`);
     }, [mainColor]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const validColor = isValidHexColor(event.target.value);
         // TODO add color type check
         if (validColor) {
             dispatch(changeColor({ type: "hex", value: event.target.value }));
+            window.history.replaceState("", "", `/${event.target.value}`);
         }
         setColorValue(event.target.value);
     };
