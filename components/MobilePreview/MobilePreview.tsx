@@ -3,15 +3,19 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { PreviewCard } from "./PreviewCard";
 import { RootState } from "../../pages/_app";
+import { ColorType } from "../../types";
+import { toHex } from "../../utils";
 
 export const MobilePreview: React.FunctionComponent = () => {
-    const mainColor = useSelector<RootState, string>((state) => state.colorManipulation.mainColor);
-    const lightText = useSelector<RootState, string>((state) => state.colorManipulation.textLight);
-    const lightBackground = useSelector<RootState, string>(
+    const primary = useSelector<RootState, ColorType>((state) => state.colorManipulation.primary);
+    const lightText = useSelector<RootState, ColorType>(
+        (state) => state.colorManipulation.textLight
+    );
+    const lightBackground = useSelector<RootState, ColorType>(
         (state) => state.colorManipulation.backgroundLight
     );
-    const darkText = useSelector<RootState, string>((state) => state.colorManipulation.textDark);
-    const darkBackground = useSelector<RootState, string>(
+    const darkText = useSelector<RootState, ColorType>((state) => state.colorManipulation.textDark);
+    const darkBackground = useSelector<RootState, ColorType>(
         (state) => state.colorManipulation.backgroundDark
     );
     const darkMode = useSelector<RootState, boolean>(
@@ -25,29 +29,39 @@ export const MobilePreview: React.FunctionComponent = () => {
                 borderRadius: 40,
                 maxWidth: 390 / 1.25,
                 maxHeight: 844 / 1.25,
-                backgroundColor: darkMode ? darkBackground : lightBackground,
+                backgroundColor: darkMode
+                    ? toHex(darkBackground).value
+                    : toHex(lightBackground).value,
                 overflow: "hidden",
             }}
         >
             <Box
                 sx={{
-                    backgroundColor: darkMode ? darkBackground : lightBackground,
+                    backgroundColor: darkMode
+                        ? toHex(darkBackground).value
+                        : toHex(lightBackground).value,
                     padding: 2,
                     gap: 2,
                     paddingTop: 3,
                 }}
             >
-                <Typography style={{ color: mainColor }} variant="h5">
+                <Typography style={{ color: toHex(primary).value }} variant="h5">
                     Colored Title
                 </Typography>
                 <Typography
-                    style={{ color: darkMode ? darkText : lightText, paddingBottom: 4 }}
+                    style={{
+                        color: darkMode ? toHex(darkText).value : toHex(lightText).value,
+                        paddingBottom: 4,
+                    }}
                     variant="h5"
                 >
                     Uncolored Title
                 </Typography>
                 <Typography
-                    style={{ color: darkMode ? darkText : lightText, paddingBottom: 8 }}
+                    style={{
+                        color: darkMode ? toHex(darkText).value : toHex(lightText).value,
+                        paddingBottom: 8,
+                    }}
                     variant="subtitle1"
                 >
                     18 gigs available

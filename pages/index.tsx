@@ -6,23 +6,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { MobilePreview, ColorInput } from "../components";
 import { theme } from "../theme";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { isValidHexColor } from "../utils";
+import { isValidHexColor, toHex } from "../utils";
 import { RootState } from "./_app";
 import { changeColor } from "../features/colorManipulation";
+import { ColorPalettePreview } from "../components/ColorPalettePreview";
+import { RandomColorButton } from "../components/RandomColorButton";
+import { ColorType } from "../types";
 
 const Home: NextPage = () => {
-    const mainColor = useSelector<RootState>((state) => state.colorManipulation.mainColor);
+    const primary = useSelector<RootState>((state) => state.colorManipulation.primary);
     const dispatch = useDispatch();
     React.useEffect(() => {
         const url = new URL(window.location.href);
         const hexFromURL = url.hash;
         // Update app's color scheme if there are valid hex triplet in URL
-        if (isValidHexColor(hexFromURL)) {
+        if (isValidHexColor({ type: "hex", value: hexFromURL })) {
             dispatch(changeColor({ type: "hex", value: hexFromURL }));
         }
         // Update URL with current color if url has no color information
         if (hexFromURL.length === 0) {
-            window.history.replaceState("", "", `/${mainColor}`);
+            window.history.replaceState("", "", `/${toHex(primary as ColorType).value}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -52,11 +55,15 @@ const Home: NextPage = () => {
                             width: "100%",
                             height: "100%",
                             display: "flex",
+                            flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
+                            gap: 1,
                         }}
                     >
                         <ColorInput />
+                        <RandomColorButton />
+                        <ColorPalettePreview />
                     </Box>
                     <Box
                         id="preview"

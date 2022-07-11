@@ -3,20 +3,20 @@ import { InputBase, Paper, Typography, Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { changeColor } from "../../features/colorManipulation";
 import { RootState } from "../../pages/_app";
-import { isValidHexColor } from "../../utils";
-import { RandomColorButton } from "../RandomColorButton";
+import { isValidHexColor, toHex } from "../../utils";
+import { ColorType } from "../../types";
 
 // TODO: Different color modes - RGB, HSL, HSB, Hex, HTML Color Names
 // TODO: Update input value if main color changes
 export const ColorInput: React.FunctionComponent = () => {
-    const mainColor = useSelector<RootState, string>((state) => state.colorManipulation.mainColor);
-    const [colorValue, setColorValue] = React.useState<string>(mainColor);
+    const primary = useSelector<RootState, ColorType>((state) => state.colorManipulation.primary);
+    const [colorValue, setColorValue] = React.useState<string>(toHex(primary).value);
     const dispatch = useDispatch();
     React.useEffect(() => {
-        setColorValue(mainColor);
-    }, [mainColor]);
+        setColorValue(toHex(primary).value);
+    }, [primary]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const validColor = isValidHexColor(event.target.value);
+        const validColor = isValidHexColor({ type: "hex", value: event.target.value });
         // TODO add color type check
         if (validColor) {
             dispatch(changeColor({ type: "hex", value: event.target.value }));
@@ -36,7 +36,6 @@ export const ColorInput: React.FunctionComponent = () => {
             >
                 <InputBase placeholder="#f0f0f0" value={colorValue} onInput={handleChange} />
             </Paper>
-            <RandomColorButton />
         </Box>
     );
 };
